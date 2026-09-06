@@ -125,22 +125,22 @@ try:
 
         left_line, right_line = approximate_lane_lines(hough_lines, width, height)
 
-        debug_frame = np.zeros_like(current_frame)
+        #debug_frame = np.zeros_like(current_frame)
 
         if left_line is not None:
             cx1, cy1, cx2, cy2 = left_line
-            cv2.line(debug_frame, (cx1, cy1), (cx2, cy2), (0, 0, 255), 5)
+            cv2.line(current_frame, (cx1, cy1), (cx2, cy2), (0, 0, 255), 5)
 
         if right_line is not None:
             dx1, dy1, dx2, dy2 = right_line
-            cv2.line(debug_frame, (dx1, dy1), (dx2, dy2), (0, 255, 0), 5)
+            cv2.line(current_frame, (dx1, dy1), (dx2, dy2), (0, 255, 0), 5)
 
         if left_line is not None and right_line is not None:
             center_x_bottom = int((left_line[0] + right_line[0]) / 2)
             center_x_top = int((left_line[2] + right_line[2]) / 2)
-            cv2.line(debug_frame, (center_x_bottom, height), (center_x_top, int(height * 0.6)), (255, 0, 0), 5)
+            cv2.line(current_frame, (center_x_bottom, height), (center_x_top, int(height * 0.6)), (255, 0, 0), 5)
 
-        cv2.imshow("Lane Lines", debug_frame)
+        cv2.imshow("Lane Lines", current_frame)
 
         # cv2.imshow("Original", frame)
         # cv2.imshow("Adjusted", adjusted)
